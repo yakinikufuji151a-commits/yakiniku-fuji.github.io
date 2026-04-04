@@ -1,1 +1,1339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>焼肉富士 | 神戸・新長田 創業56年の老舗焼肉</title>
+  <meta name="description" content="神戸・新長田で56年。厳選黒毛和牛の老舗「焼肉富士」。神戸牛、牛トロ炙り、特上ハラミなど自慢の一品をご堪能ください。ご予約はお電話・ネットで。">
+  <link href="https://awards.infcdn.net/2024/badge-circledLeaves27.css" rel="stylesheet"/>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --red:    #C0392B;
+      --red-dk: #922B21;
+      --gold:   #C9A84C;
+      --black:  #111111;
+      --charcoal: #1E1E1E;
+      --gray:   #2C2C2C;
+      --offwhite: #F5F0EA;
+      --white:  #FFFFFF;
+      --font-ja: 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', 'MS Mincho', Georgia, serif;
+      --font-sans: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--offwhite);
+      font-family: var(--font-ja);
+      line-height: 1.8;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(17, 17, 17, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+    }
+
+    .nav-logo {
+      font-size: 1.3rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-links a {
+      color: var(--offwhite);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--red);
+      color: var(--white) !important;
+      padding: 10px 24px;
+      border-radius: 2px;
+      font-weight: bold;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--red-dk) !important; color: var(--white) !important; }
+
+    /* Mobile menu */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      transition: transform 0.3s;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.3);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 60%, rgba(192,57,43,0.2) 0%, transparent 70%),
+        linear-gradient(to bottom, rgba(17,17,17,0.3) 0%, rgba(17,17,17,0.6) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Ember particles */
+    .embers {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .ember {
+      position: absolute;
+      border-radius: 50%;
+      animation: float linear infinite;
+      opacity: 0;
+    }
+    @keyframes float {
+      0%   { transform: translateY(100vh) translateX(0) scale(1);  opacity: 0; }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-10vh) translateX(var(--drift)) scale(0.3); opacity: 0; }
+    }
+    .ember:nth-child(1)  { left:10%; width:4px; height:4px; background:#C0392B; animation-duration:6s;  animation-delay:0s;   --drift: 30px; }
+    .ember:nth-child(2)  { left:20%; width:3px; height:3px; background:#E74C3C; animation-duration:8s;  animation-delay:1s;   --drift:-20px; }
+    .ember:nth-child(3)  { left:35%; width:5px; height:5px; background:#C9A84C; animation-duration:7s;  animation-delay:2s;   --drift: 15px; }
+    .ember:nth-child(4)  { left:50%; width:3px; height:3px; background:#E74C3C; animation-duration:9s;  animation-delay:0.5s; --drift:-35px; }
+    .ember:nth-child(5)  { left:65%; width:4px; height:4px; background:#C0392B; animation-duration:6.5s;animation-delay:3s;   --drift: 25px; }
+    .ember:nth-child(6)  { left:78%; width:3px; height:3px; background:#C9A84C; animation-duration:8.5s;animation-delay:1.5s; --drift:-10px; }
+    .ember:nth-child(7)  { left:88%; width:5px; height:5px; background:#E74C3C; animation-duration:7.5s;animation-delay:4s;   --drift: 40px; }
+    .ember:nth-child(8)  { left:42%; width:2px; height:2px; background:#C9A84C; animation-duration:10s; animation-delay:2.5s; --drift:-25px; }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      padding: 6px 20px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      line-height: 1.2;
+      color: var(--white);
+      text-shadow: 0 0 60px rgba(192,57,43,0.5);
+      margin-bottom: 12px;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: rgba(245, 240, 234, 0.8);
+      letter-spacing: 0.08em;
+      max-width: 540px;
+      margin: 0 auto 52px;
+      line-height: 2;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 18px 44px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--red-dk); transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid rgba(245,240,234,0.4);
+      color: var(--offwhite);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      padding: 17px 36px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: rgba(245,240,234,0.4);
+      z-index: 2;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+    /* ===== SATISFACTION BANNER ===== */
+    .satisfaction {
+      background: var(--charcoal);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .satisfaction-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .sat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+    }
+    .sat-number span { font-size: 1.6rem; }
+
+    .sat-label {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: rgba(245,240,234,0.6);
+      margin-top: 6px;
+    }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 100px 24px; }
+
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      text-align: center;
+      color: rgba(245,240,234,0.7);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      max-width: 560px;
+      margin: 0 auto 70px;
+      line-height: 2;
+    }
+
+    /* ===== HISTORY ===== */
+    .history { background: var(--black); }
+
+    .history-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0 40px;
+      align-items: center;
+    }
+
+    .history-number { text-align: right; }
+    .history-number .num {
+      font-size: clamp(5rem, 12vw, 9rem);
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+      opacity: 0.9;
+    }
+    .history-number .num-label {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      display: block;
+      margin-top: 4px;
+    }
+
+    .history-vline { background: rgba(201,168,76,0.3); align-self: stretch; }
+
+    .history-text { padding-left: 10px; }
+    .history-text p {
+      font-size: 1rem;
+      color: rgba(245,240,234,0.8);
+      line-height: 2;
+      letter-spacing: 0.05em;
+    }
+    .history-text p + p { margin-top: 20px; }
+
+    /* ===== FEATURES ===== */
+    .features { background: var(--charcoal); }
+
+    .features-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .feature-card {
+      background: var(--black);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-4px); }
+
+    .feature-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+    .feature-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .feature-card:hover .feature-img img { transform: scale(1.05); }
+
+    .feature-body { padding: 28px 24px; }
+
+    .feature-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .feature-desc {
+      font-size: 0.88rem;
+      color: rgba(245,240,234,0.65);
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== MENU ===== */
+    .menu { background: var(--black); }
+
+    .menu-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    .menu-card {
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      background: var(--charcoal);
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .menu-card:hover { border-color: rgba(201,168,76,0.6); transform: translateY(-4px); }
+
+    .menu-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .menu-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .menu-card:hover .menu-img img { transform: scale(1.05); }
+
+    .menu-body { padding: 24px 28px; }
+
+    .menu-tag {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .menu-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .menu-desc {
+      font-size: 0.85rem;
+      color: rgba(245,240,234,0.6);
+      line-height: 1.8;
+    }
+
+    /* ===== GALLERY ===== */
+    .gallery {
+      background: var(--charcoal);
+      padding: 80px 0;
+    }
+
+    .gallery-strip {
+      display: flex;
+      gap: 4px;
+      overflow: hidden;
+      animation: galleryScroll 30s linear infinite;
+    }
+
+    .gallery-strip img {
+      width: 220px;
+      height: 160px;
+      object-fit: cover;
+      flex-shrink: 0;
+      filter: brightness(0.85);
+      transition: filter 0.3s;
+    }
+    .gallery-strip img:hover { filter: brightness(1); }
+
+    @keyframes galleryScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== INTERIOR ===== */
+    .interior { background: var(--black); }
+
+    .interior-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .interior-card {
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .interior-card img {
+      width: 100%;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+    }
+
+    .interior-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(17,17,17,0.9), transparent);
+      padding: 24px 20px 16px;
+    }
+
+    .interior-label h4 {
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .interior-label p {
+      font-size: 0.8rem;
+      color: rgba(245,240,234,0.6);
+    }
+
+    /* ===== VOICE / TESTIMONIALS ===== */
+    .voice { background: var(--charcoal); }
+
+    .voice-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .voice-card {
+      padding: 36px 30px;
+      border-left: 3px solid var(--red);
+      background: var(--black);
+    }
+
+    .voice-stars {
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+    }
+
+    .voice-text {
+      font-size: 0.92rem;
+      color: rgba(245,240,234,0.8);
+      line-height: 1.9;
+      font-style: italic;
+      margin-bottom: 18px;
+    }
+
+    .voice-name {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+    }
+
+    /* ===== COURSE ===== */
+    .course { background: var(--black); }
+
+    .course-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .course-card {
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 36px 28px;
+      text-align: center;
+      transition: border-color 0.25s;
+    }
+    .course-card:hover { border-color: var(--gold); }
+
+    .course-badge {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      padding: 4px 14px;
+      margin-bottom: 16px;
+    }
+
+    .course-name {
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .course-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .course-price span { font-size: 0.9rem; font-weight: normal; }
+
+    .course-detail {
+      font-size: 0.82rem;
+      color: rgba(245,240,234,0.5);
+      line-height: 1.8;
+      margin-top: 16px;
+    }
+
+    /* ===== RESERVE ===== */
+    .reserve {
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(192,57,43,0.25) 0%, transparent 60%),
+        var(--charcoal);
+      text-align: center;
+    }
+
+    .reserve-box {
+      max-width: 640px;
+      margin: 0 auto;
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 64px 48px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      max-width: 200px;
+      margin: 0 auto 40px;
+    }
+    .divider-line { flex: 1; height: 1px; background: var(--gold); opacity: 0.4; }
+    .divider-diamond {
+      width: 8px; height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    .reserve-method {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+
+    .reserve-tel {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.08em;
+      margin: 20px 0;
+    }
+    .reserve-tel a { color: inherit; text-decoration: none; }
+    .reserve-tel a:hover { color: var(--gold); }
+
+    .reserve-hours {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: rgba(245,240,234,0.55);
+      letter-spacing: 0.1em;
+      margin-bottom: 28px;
+    }
+
+    .reserve-or {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: rgba(245,240,234,0.35);
+      margin: 28px 0;
+    }
+
+    .btn-hotpepper {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 16px 40px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.25s, color 0.25s;
+    }
+    .btn-hotpepper:hover { background: var(--gold); color: var(--black); }
+
+    .reserve-note {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: rgba(245,240,234,0.4);
+      margin-top: 28px;
+      letter-spacing: 0.05em;
+      line-height: 1.8;
+    }
+
+    /* ===== INFO ===== */
+    .info { background: var(--black); }
+
+    .info-inner { max-width: 800px; margin: 0 auto; }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table tr {
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .info-table td {
+      padding: 20px 0;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      vertical-align: top;
+    }
+
+    .info-table td:first-child {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      white-space: nowrap;
+      padding-right: 40px;
+      width: 130px;
+    }
+
+    .info-table td:last-child {
+      color: rgba(245,240,234,0.8);
+    }
+
+    .info-table a { color: var(--gold); text-decoration: none; }
+    .info-table a:hover { text-decoration: underline; }
+
+    /* Map placeholder */
+    .map-container {
+      max-width: 800px;
+      margin: 40px auto 0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      filter: grayscale(0.4) brightness(0.85);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(201,168,76,0.15);
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .footer-logo {
+      font-size: 1.6rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .footer-sub {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: rgba(245,240,234,0.35);
+      margin-bottom: 16px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(245,240,234,0.5);
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--gold); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .features-grid { grid-template-columns: 1fr; }
+
+      .history-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .history-number { text-align: center; }
+      .history-vline { display: none; }
+      .history-text { padding: 0; text-align: center; }
+
+      .interior-grid { grid-template-columns: 1fr; }
+      .reserve-box { padding: 40px 24px; }
+      .satisfaction-inner { gap: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">焼肉富士</div>
+    <ul class="nav-links">
+      <li><a href="#about">お店について</a></li>
+      <li><a href="#menu">メニュー</a></li>
+      <li><a href="#interior">店内</a></li>
+      <li><a href="#voice">お客様の声</a></li>
+      <li><a href="#access">アクセス</a></li>
+      <li><a href="#reserve" class="nav-cta">ご予約</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://imgfp.hotp.jp/IMGH/40/12/P040612394/P040612394_480.jpg" alt="焼肉富士 料理" loading="eager">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="embers">
+      <div class="ember"></div><div class="ember"></div><div class="ember"></div><div class="ember"></div>
+      <div class="ember"></div><div class="ember"></div><div class="ember"></div><div class="ember"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">SINCE 1968 — 神戸・新長田</div>
+      <h1>焼肉富士</h1>
+      <p class="hero-sub">五十六年、受け継がれる味。</p>
+      <p class="hero-tagline">
+        新長田の地で半世紀以上、厳選された黒毛和牛と<br>
+        厳選素材をお届けしてきた老舗焼肉店。<br>
+        今日も、あなたをお待ちしています。
+      </p>
+      <div class="hero-cta-group">
+        <a href="#reserve" class="btn-primary">ご予約はこちら</a>
+        <a href="#menu" class="btn-outline">メニューを見る</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      SCROLL
+    </div>
+  </section>
+
+  <!-- SATISFACTION BANNER -->
+  <div class="satisfaction">
+    <div class="satisfaction-inner">
+      <div class="sat-item">
+        <div class="sat-number">97<span>%</span></div>
+        <div class="sat-label">料理・味に満足</div>
+      </div>
+      <div class="sat-item">
+        <div class="sat-number">95<span>%</span></div>
+        <div class="sat-label">接客・サービスに満足</div>
+      </div>
+      <div class="sat-item">
+        <div class="sat-number">56<span>年</span></div>
+        <div class="sat-label">地元に愛された歴史</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <section class="history" id="about">
+    <div class="section-label">OUR STORY</div>
+    <div class="section-title">56年の歴史</div>
+    <div class="section-lead">
+      1968年、神戸・新長田に産声を上げた焼肉富士。<br>
+      変わらぬ味と、受け継がれる職人の技。
+    </div>
+
+    <div class="history-inner">
+      <div class="history-number">
+        <span class="num">56</span>
+        <span class="num-label">YEARS OF TRADITION</span>
+      </div>
+      <div class="history-vline"></div>
+      <div class="history-text">
+        <p>
+          創業以来、冷凍肉を一切使わず、
+          目利きのプロが厳選した上質な黒毛和牛のみを使用。
+          新長田の皆様のあたたかいご支持のおかげで、
+          半世紀を超えて暖簾を守ることができました。
+        </p>
+        <p>
+          家族のお祝いから、仲間との語らいまで。
+          来店されたお客様の42%が家族連れ、
+          37%がご友人との来店という、
+          世代を超えて愛されるお店であり続けます。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES (3 recommend points with photos) -->
+  <section class="features">
+    <div class="section-label">WHY FUJI</div>
+    <div class="section-title">焼肉富士が選ばれる理由</div>
+    <div class="section-lead">
+      半世紀以上、地域に愛され続けてきた理由がここにあります。
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-img">
+          <img src="https://imgfp.hotp.jp/IMGH/81/70/P037468170/P037468170_480.jpg" alt="厳選神戸牛" loading="lazy">
+        </div>
+        <div class="feature-body">
+          <div class="feature-title">厳選「黒毛和牛」</div>
+          <p class="feature-desc">
+            長年の経験で培った確かな目利きで仕入れた上質な黒毛和牛のみを使用。
+            冷凍肉は一切使わず、鮮度と質にとことんこだわっています。
+          </p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-img">
+          <img src="https://imgfp.hotp.jp/IMGH/66/36/P037466636/P037466636_480.jpg" alt="焼肉富士 店内" loading="lazy">
+        </div>
+        <div class="feature-body">
+          <div class="feature-title">和モダンな空間</div>
+          <p class="feature-desc">
+            2階のお座敷は最大40名様で貸切可能。
+            床下に広がる和風庭園が、宴会や特別な日を一層華やかに演出します。
+          </p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-img">
+          <img src="https://imgfp.hotp.jp/IMGH/91/74/P033709174/P033709174_480.jpg" alt="焼肉富士 料理" loading="lazy">
+        </div>
+        <div class="feature-body">
+          <div class="feature-title">56年の信頼と味</div>
+          <p class="feature-desc">
+            1968年の創業から受け継がれる秘伝のタレと職人技。
+            来店されたお客様の97%が料理に満足と評価する確かな味わいです。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu" id="menu">
+    <div class="section-label">MENU</div>
+    <div class="section-title">自慢の一品</div>
+    <div class="section-lead">
+      厳選黒毛和牛を匠の技で。富士自慢の看板メニューをご紹介します。
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-img">
+          <img src="https://imgfp.hotp.jp/IMGH/81/70/P037468170/P037468170_480.jpg" alt="厳選 神戸牛" loading="lazy">
+        </div>
+        <div class="menu-body">
+          <div class="menu-tag">SIGNATURE</div>
+          <div class="menu-name">厳選「神戸牛」</div>
+          <p class="menu-desc">
+            目利きのプロが選び抜いた神戸牛。
+            さっと炙れば、口の中でとろける至福の味わいが広がります。
+          </p>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img">
+          <img src="https://imgfp.hotp.jp/IMGH/81/73/P037468173/P037468173_480.jpg" alt="牛トロ炙り" loading="lazy">
+        </div>
+        <div class="menu-body">
+          <div class="menu-tag">POPULAR</div>
+          <div class="menu-name">牛トロ炙り</div>
+          <p class="menu-desc">
+            とろけるような食感と濃厚な旨み。
+            表面を軽く炙った牛トロは、当店ならではの贅沢な一品です。
+          </p>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img">
+          <img src="https://imgfp.hotp.jp/IMGH/53/36/P037525336/P037525336_480.jpg" alt="特上ハラミ" loading="lazy">
+        </div>
+        <div class="menu-body">
+          <div class="menu-tag">RECOMMEND</div>
+          <div class="menu-name">特上ハラミ（塩・タレ）</div>
+          <p class="menu-desc">
+            肉厚で噛むほどに旨みが溢れる特上ハラミ。
+            塩とタレ、お好みの味付けでお楽しみください。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO GALLERY STRIP -->
+  <div class="gallery">
+    <div class="gallery-strip">
+      <img src="https://imgfp.hotp.jp/IMGH/54/56/P048685456/P048685456_480.jpg" alt="焼肉富士の料理" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/54/46/P048685446/P048685446_480.jpg" alt="焼肉富士の料理" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/67/30/P037466730/P037466730_480.jpg" alt="焼肉富士の料理" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/81/63/P037468163/P037468163_480.jpg" alt="焼肉富士の料理" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/84/02/P033058402/P033058402_480.jpg" alt="焼肉富士の料理" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/82/11/P037468211/P037468211_480.jpg" alt="富士特製チーズ石焼クッパ" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/82/00/P037468200/P037468200_480.jpg" alt="激麺" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/39/57/P025103957/P025103957_480.jpg" alt="焼肉富士の料理" loading="lazy">
+      <!-- duplicate for seamless loop -->
+      <img src="https://imgfp.hotp.jp/IMGH/54/56/P048685456/P048685456_480.jpg" alt="焼肉富士の料理" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/54/46/P048685446/P048685446_480.jpg" alt="焼肉富士の料理" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/67/30/P037466730/P037466730_480.jpg" alt="焼肉富士の料理" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/81/63/P037468163/P037468163_480.jpg" alt="焼肉富士の料理" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/84/02/P033058402/P033058402_480.jpg" alt="焼肉富士の料理" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/82/11/P037468211/P037468211_480.jpg" alt="富士特製チーズ石焼クッパ" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/82/00/P037468200/P037468200_480.jpg" alt="激麺" loading="lazy">
+      <img src="https://imgfp.hotp.jp/IMGH/39/57/P025103957/P025103957_480.jpg" alt="焼肉富士の料理" loading="lazy">
+    </div>
+  </div>
+
+  <!-- INTERIOR -->
+  <section class="interior" id="interior">
+    <div class="section-label">INTERIOR</div>
+    <div class="section-title">店内のご案内</div>
+    <div class="section-lead">
+      1階はテーブル席と掘り炬燵。<br>2階は和モダンなお座敷で、最大40名様の貸切にも対応。
+    </div>
+
+    <div class="interior-grid">
+      <div class="interior-card">
+        <img src="https://imgfp.hotp.jp/IMGH/83/99/P037468399/P037468399_480.jpg" alt="焼肉富士 1階席" loading="lazy">
+        <div class="interior-label">
+          <h4>1F テーブル・掘り炬燵</h4>
+          <p>落ち着いた雰囲気のお席をご用意</p>
+        </div>
+      </div>
+      <div class="interior-card">
+        <img src="https://imgfp.hotp.jp/IMGH/84/04/P037468404/P037468404_480.jpg" alt="焼肉富士 2階お座敷" loading="lazy">
+        <div class="interior-label">
+          <h4>2F 和モダンお座敷</h4>
+          <p>床下庭園つき・最大40名貸切可能</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSE -->
+  <section class="course">
+    <div class="section-label">COURSE</div>
+    <div class="section-title">コース・セット</div>
+    <div class="section-lead">
+      お得なコースから贅沢なペアセットまで。ご宴会にもぴったりです。
+    </div>
+
+    <div class="course-grid">
+      <div class="course-card">
+        <div class="course-badge">CASUAL</div>
+        <div class="course-name">カジュアルコース</div>
+        <div class="course-price">3,400<span>円〜（13品）</span></div>
+        <p class="course-detail">
+          ネット予約限定コース<br>
+          90分飲み放題付 5,000円 / 120分 5,500円
+        </p>
+      </div>
+      <div class="course-card">
+        <div class="course-badge">STANDARD</div>
+        <div class="course-name">スタンダードコース</div>
+        <div class="course-price">3,900<span>円〜（11品）</span></div>
+        <p class="course-detail">
+          定番の人気コース<br>
+          90分飲み放題付 5,500円 / 120分 6,000円
+        </p>
+      </div>
+      <div class="course-card">
+        <div class="course-badge">STAMINA</div>
+        <div class="course-name">スタミナコース</div>
+        <div class="course-price">4,400<span>円〜（9品）</span></div>
+        <p class="course-detail">
+          ホルモン系充実コース<br>
+          90分飲み放題付 6,000円 / 120分 6,500円
+        </p>
+      </div>
+      <div class="course-card">
+        <div class="course-badge">NEW</div>
+        <div class="course-name">ホルモン鍋コース</div>
+        <div class="course-price">2,400<span>円〜（4品）</span></div>
+        <p class="course-detail">
+          新名物ホルモン鍋を満喫<br>
+          90分飲み放題付 4,000円 / 120分 4,500円
+        </p>
+      </div>
+      <div class="course-card">
+        <div class="course-badge">SPECIAL</div>
+        <div class="course-name">富士山コース</div>
+        <div class="course-price">5,500<span>円〜（11品）</span></div>
+        <p class="course-detail">
+          特別な日に贅沢な一皿を<br>
+          90分飲み放題付 7,100円 / 120分 7,600円
+        </p>
+      </div>
+      <div class="course-card">
+        <div class="course-badge">FAMILY</div>
+        <div class="course-name">ファミリーセット</div>
+        <div class="course-price">9,500<span>円（4名様分・9品）</span></div>
+        <p class="course-detail">
+          ご家族でたっぷり楽しめる<br>
+          お得なボリュームセット
+        </p>
+      </div>
+      <div class="course-card">
+        <div class="course-badge">PAIR</div>
+        <div class="course-name">ペアセット</div>
+        <div class="course-price">8,500<span>円（2名様分・9品）</span></div>
+        <p class="course-detail">
+          塩特上ロース1枚焼など<br>
+          カップル・ご夫婦におすすめ
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARD BADGE -->
+  <section style="text-align: center; padding: 60px 20px; background: var(--charcoal);">
+    <a id="b-circledLeaves27" target="_blank" href="https://restaurantguru.com/Yakiniku-Fuji-Kobe" class="b-circledLeaves27--light b-circledLeaves27--2025" style="display: inline-block;">
+      <span class="b-circledLeaves27__title">Recommended</span>
+      <span class="b-circledLeaves27__separator"></span>
+      <span class="b-circledLeaves27__name">Yakiniku Fuji</span>
+    </a>
+  </section>
+
+  <!-- VOICE -->
+  <section class="voice" id="voice">
+    <div class="section-label">REVIEWS</div>
+    <div class="section-title">お客様の声</div>
+    <div class="section-lead">
+      口コミ143件以上。世代を超えて愛される味へ、たくさんのお声をいただいています。
+    </div>
+
+    <div class="voice-grid">
+      <div class="voice-card">
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">
+          「子どもの頃から家族で通っています。
+          あの香りがすると、もうたまらない。
+          新長田に来たら必ず寄る店です。」
+        </p>
+        <div class="voice-name">40代 男性・地元リピーター</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">
+          「牛トロ炙りに感動しました。
+          口の中でとろける食感は他では味わえません。
+          また必ず来ます！」
+        </p>
+        <div class="voice-name">30代 女性・初来店</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-stars">★★★★★</div>
+        <p class="voice-text">
+          「2階の和モダンなお座敷で記念日をお祝い。
+          庭園も素敵で、スタッフの方も親切。
+          大切な日にまた使いたいお店です。」
+        </p>
+        <div class="voice-name">20代 カップル</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVE -->
+  <section class="reserve" id="reserve">
+    <div class="section-label">RESERVATION</div>
+    <div class="section-title">ご予約</div>
+    <div class="section-lead">
+      週末や記念日はお早めにどうぞ。<br>お電話・ネット予約を承っております。
+    </div>
+
+    <div class="reserve-box">
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-diamond"></div>
+        <div class="divider-line"></div>
+      </div>
+
+      <p class="reserve-method">ネット予約（ホットペッパーグルメ）</p>
+
+      <a href="https://www.hotpepper.jp/strJ000017521/" target="_blank" rel="noopener" class="btn-primary" style="font-size: 1.05rem; padding: 20px 52px;">
+        ネットで予約する
+      </a>
+
+      <p class="reserve-or">── or ──</p>
+
+      <p class="reserve-method">お電話でのご予約</p>
+      <div class="reserve-tel">
+        <a href="tel:078-611-4837">078-611-4837</a>
+      </div>
+      <p class="reserve-hours">受付時間：17:00 〜 22:30（定休日：月曜日）</p>
+
+      <a href="tel:078-611-4837" class="btn-hotpepper" style="margin-top:16px;">
+        今すぐ電話する
+      </a>
+
+      <p class="reserve-note">
+        ※ ネット予約なら24時間受付・ポイントも貯まります<br>
+        ※ 5名様以上のご予約はお早めにご連絡ください<br>
+        ※ コース料理はご予約時にお申し付けください
+      </p>
+    </div>
+  </section>
+
+  <!-- INFO / ACCESS -->
+  <section class="info" id="access">
+    <div class="section-label">ACCESS & INFO</div>
+    <div class="section-title">アクセス・店舗情報</div>
+
+    <div class="info-inner">
+      <table class="info-table">
+        <tr>
+          <td>店名</td>
+          <td>焼肉富士</td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td>〒653-0038　兵庫県神戸市長田区若松町3-1-1<br>フレールアスタ若松 1F</td>
+        </tr>
+        <tr>
+          <td>電話</td>
+          <td><a href="tel:078-611-4837">078-611-4837</a><br>
+          </td>
+        </tr>
+        <tr>
+          <td>営業時間</td>
+          <td>
+            火〜日・祝日・祝前日<br>
+            17:00 〜 23:00（L.O. 22:30）
+          </td>
+        </tr>
+        <tr>
+          <td>定休日</td>
+          <td>月曜日（祝日の場合は翌日休業）</td>
+        </tr>
+        <tr>
+          <td>アクセス</td>
+          <td>
+            JR神戸線「新長田駅」より徒歩 約3分<br>
+            神戸市営地下鉄 西神・山手線「新長田駅」より徒歩 約3分
+          </td>
+        </tr>
+        <tr>
+          <td>平均予算</td>
+          <td>約5,000円</td>
+        </tr>
+        <tr>
+          <td>お支払い</td>
+          <td>VISA / Master / AMEX / JCB / DINERS / 銀聯<br>PayPay / 楽天ペイ / d払い</td>
+        </tr>
+        <tr>
+          <td>席数</td>
+          <td>1F テーブル・掘り炬燵 / 2F お座敷（最大40名貸切可）</td>
+        </tr>
+        <tr>
+          <td>創業</td>
+          <td>1968年（昭和43年）</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.5!2d135.1438!3d34.6548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z5YWl5bqX5rOi5YmN!5e0!3m2!1sja!2sjp!4v1"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">焼肉富士</div>
+    <p class="footer-sub">YAKINIKU FUJI — 神戸・新長田 創業56年</p>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/yakinikufuji151a/" target="_blank" rel="noopener">📷 Instagram</a>
+      <a href="https://www.hotpepper.jp/strJ000017521/" target="_blank" rel="noopener">🍽 ホットペッパー</a>
+      <a href="https://tabelog.com/hyogo/A2801/A280110/28009867/" target="_blank" rel="noopener">📝 食べログ</a>
+    </div>
+    <p style="font-family: var(--font-sans); font-size: 0.7rem; color: rgba(245,240,234,0.25); margin-top: 24px; letter-spacing: 0.1em;">
+      © 2026 焼肉富士 All rights reserved.
+    </p>
+  </footer>
+
+</body>
+</html>
